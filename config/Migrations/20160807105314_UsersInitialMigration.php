@@ -1,22 +1,12 @@
 <?php
 use Migrations\AbstractMigration;
 
-class CroogoUsersInitialMigration extends AbstractMigration
+class UsersInitialMigration extends AbstractMigration
 {
-
-    public $autoId = false;
-
     public function up()
     {
-        $table = $this->table('roles');
-        $table
-            ->addColumn('id', 'integer', [
-                'autoIncrement' => true,
-                'default' => null,
-                'limit' => 11,
-                'null' => false,
-            ])
-            ->addPrimaryKey(['id'])
+
+        $this->table('roles')
             ->addColumn('title', 'string', [
                 'default' => null,
                 'limit' => 100,
@@ -55,15 +45,7 @@ class CroogoUsersInitialMigration extends AbstractMigration
             )
             ->create();
 
-        $table = $this->table('users');
-        $table
-            ->addColumn('id', 'integer', [
-                'autoIncrement' => true,
-                'default' => null,
-                'limit' => 20,
-                'null' => false,
-            ])
-            ->addPrimaryKey(['id'])
+        $this->table('users')
             ->addColumn('role_id', 'integer', [
                 'default' => null,
                 'limit' => 11,
@@ -110,7 +92,7 @@ class CroogoUsersInitialMigration extends AbstractMigration
                 'null' => true,
             ])
             ->addColumn('status', 'boolean', [
-                'default' => 0,
+                'default' => false,
                 'limit' => null,
                 'null' => false,
             ])
@@ -140,7 +122,6 @@ class CroogoUsersInitialMigration extends AbstractMigration
                 'null' => true,
             ])
             ->create();
-
     }
 
     public function down()
